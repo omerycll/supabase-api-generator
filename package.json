@@ -1,0 +1,39 @@
+{
+  "name": "supabase-api-generator",
+  "version": "1.0.0",
+  "description": "Generate CRUD operations for Supabase tables based on type definitions",
+  "main": "dist/supabase-api-generator.js",
+  "bin": {
+    "supabase-api-generator": "dist/supabase-api-generator.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"No tests specified\" && exit 0",
+    "start": "node dist/supabase-api-generator.js"
+  },
+  "keywords": [
+    "supabase",
+    "typescript",
+    "api",
+    "generator",
+    "crud"
+  ],
+  "author": "Omer <your-email@example.com>",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omerycll/supabase-api-generator.git"
+  },
+  "types": "./dist/supabase-api-generator.d.ts",
+  "bugs": {
+    "url": "https://github.com/omerycll/supabase-api-generator/issues"
+  },
+  "homepage": "https://github.com/omerycll/supabase-api-generator#readme"
+}

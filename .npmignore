@@ -1,0 +1,12 @@
+# Geliştirme dosyaları
+*.ts
+!*.d.ts
+tsconfig.json
+
+# Git ve diğer VCS dosyaları
+.git
+.gitignore
+
+# Diğer dosyalar
+node_modules
+npm-debug.log 
