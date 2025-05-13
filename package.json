@@ -19,7 +19,7 @@
     "generator",
     "crud"
   ],
-  "author": "Omer <your-email@example.com>",
+  "author": "Omer <me@omeryucel.dev>",
   "license": "MIT",
   "dependencies": {
     "typescript": "^5.0.0"
