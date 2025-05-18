@@ -1,6 +1,6 @@
 {
   "name": "supabase-api-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate CRUD operations for Supabase tables based on type definitions",
   "main": "dist/supabase-api-generator.js",
   "bin": {

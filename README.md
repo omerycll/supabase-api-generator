@@ -43,36 +43,112 @@ The generator creates the following files:
 ## Example Usage of Generated API
 
 ```typescript
-import { createSupabaseApi } from './path/to/SupabaseApi';
+import API from './path/to/SupabaseApi';
 
-// Create an API instance
-const api = createSupabaseApi();
+// The API is exported as a singleton instance
+// You can use it directly without creating a new instance
 
-// Use generated methods
+// Basic CRUD operations
 async function fetchCustomers() {
-  const customers = await api.getCustomers();
+  // Get all customers
+  const customers = await API.getCustomers();
   return customers;
 }
 
+async function fetchCustomerWithFilters() {
+  // Get customers with filters, pagination and specific fields
+  const activeCustomers = await API.getCustomers({
+    select: 'id, name, email, status',
+    filters: { status: 'active' },
+    limit: 10,
+    page: 0
+  });
+  return activeCustomers;
+}
+
 async function fetchCustomer(id: string) {
-  const customer = await api.getCustomer(id);
+  // Get specific customer by ID
+  const customer = await API.getCustomer(id);
   return customer;
 }
 
 async function createCustomer(data) {
-  const newCustomer = await api.createCustomer(data);
+  // Create a single customer
+  const newCustomer = await API.createCustomer(data);
   return newCustomer;
 }
 
+async function createMultipleCustomers(customersData) {
+  // Create multiple customers in one operation
+  const newCustomers = await API.createManyCustomers(customersData);
+  return newCustomers;
+}
+
 async function updateCustomer(id: string, data) {
-  const updatedCustomer = await api.updateCustomer(id, data);
+  // Update a customer
+  const updatedCustomer = await API.updateCustomer(id, data);
   return updatedCustomer;
 }
 
+async function updateMultipleCustomers(updatesArray) {
+  // Update multiple customers in one operation
+  // updatesArray = [{ id: '1', data: {...} }, { id: '2', data: {...} }]
+  const updatedCustomers = await API.updateManyCustomers(updatesArray);
+  return updatedCustomers;
+}
+
 async function deleteCustomer(id: string) {
-  await api.deleteCustomer(id);
+  // Delete a customer
+  await API.deleteCustomer(id);
+}
+
+// Advanced filtering examples
+async function advancedFiltering() {
+  // Fetch customers with complex filters
+  const filteredCustomers = await API.getCustomers({
+    filters: {
+      // Simple equality
+      status: 'active',
+      
+      // Use arrays for IN queries
+      tier: ['premium', 'enterprise'],
+      
+      // Filter with comparison operators
+      created_at: { gte: '2023-01-01' },
+      age: { gt: 18, lt: 65 },
+      
+      // Text search with LIKE/ILIKE
+      name: { ilike: '%john%' },
+      
+      // NULL checks
+      deleted_at: null
+    },
+    limit: 20,
+    page: 0
+  });
+  
+  return filteredCustomers;
+}
+
+// Using custom ID fields for non-standard primary keys
+async function useCustomIdField() {
+  const customer = await API.getCustomer('C12345', { 
+    idField: 'customer_code' 
+  });
+  return customer;
 }
 ```
+
+## Features
+
+- ✅ Automatic CRUD operation generation for all tables
+- ✅ TypeScript type safety with generic types
+- ✅ Pagination support with limit and page options
+- ✅ Filtering with a powerful query builder
+- ✅ Batch operations (createMany, updateMany)
+- ✅ Custom ID fields for non-standard primary keys
+- ✅ Proper error handling and detailed logging
+- ✅ Self-contained singleton API instance
 
 ## License
 
